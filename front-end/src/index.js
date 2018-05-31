@@ -6,11 +6,15 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
-import reducers from './reducers';
+import RootReducer from './reducers';
 
-const store = applyMiddleware()(reducers);
+const store = createStore(
+  RootReducer,
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(
   <Provider store={store}>
